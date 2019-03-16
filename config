@@ -1,0 +1,69 @@
+#!/bin/bash
+
+# Enable debugging, useful when you want to figure out why
+# this script is not behaving the way you expect it to do
+DEBUG=0
+
+# Enable alternative glibc directory for systems using older glibc versions ( ie RHEL CentOS and others )
+ALT_GLIBC=0
+# Put the Absolute path to the side by side glibc root here
+ALT_GLIBC_DIR="/opt/glibc-2.18"
+#Version of alt glibc goes here (i.e 2.18)
+ALT_GLIBC_VER="2.18"
+
+# What do you want to call this service?
+SERVICE_NAME="Factorio"
+
+# Which user/group is running factorio?
+# Running any public service as "root" is generally not recommended
+USERNAME=root
+USERGROUP=root
+
+# The absolute path to the factorio directory
+FACTORIO_PATH=/opt/factorio
+# Server settings file, see data/server-settings.example.json
+SERVER_SETTINGS=${FACTORIO_PATH}/data/server-settings.json
+
+# Port on which you want to run the server
+PORT=34197
+
+# Save the command/chat/log on server start? Default location /opt/factorio/server.out 
+# Setting this to 0 will cause the script to erase the log file on each start
+# If you set this to 1 you might want to apply logrotate on the log or it will eventually fill your disk
+SAVELOG=1
+
+# Delay starting the game server until the we confirm the pingpong servers are reachable.
+# This makes sure that game server detects the correct external IP in a NAT setup.
+# Useful for Cloud providers where VMs may start faster than their Internet connectivity is plumbed.
+WAIT_PINGPONG=0
+
+# Factorio comes packaged in a tarball containing the directory named "factorio"
+# when using this scripts update/install command we expect to see this very
+# directory. If you want to supply your own update/install tar other than what you can download
+# from factorio.com/download-headless you can use this option to tell the script this is ok.
+#
+# If you place your factorio install within a directory named "factorio" and you update/install
+# with the official tarball you can safely ignore this option.
+PACKAGE_DIR_NAME=factorio
+
+#
+# narcotiq made a sweet update script for factorio and by cloning into this
+# you can simply run "factorio update" provided you configure the below arguments
+# To install the updater:
+#
+# git clone https://github.com/narc0tiq/factorio-updater
+#
+
+# absolute path to the factorio-updater script
+UPDATE_SCRIPT=/usr/local/bin/update_factorio.py
+# Note that if you set HEADLESS=1 the username/token will not be used as the headless
+# download is provided free of charge
+HEADLESS=1
+UPDATE_USERNAME=you
+UPDATE_TOKEN=yourtoken
+UPDATE_EXPERIMENTAL=1
+UPDATE_TMPDIR=/tmp
+
+# Extras
+# Additional binary arguments, these will be sent to the binary when issuing the "start" command
+EXTRA_BINARGS=""

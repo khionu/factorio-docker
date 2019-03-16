@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+exec chpst /usr/local/bin/factorio-init/factorio foreground
