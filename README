@@ -1,0 +1,12 @@
+# WIP - Factorio Docker Container
+This container is everything you need to get a headless, experimental-build Factorio server running.
+
+Includes:
+- [Init script](https://github.com/Bisa/factorio-init)
+- [Update Script](https://github.com/narc0tiq/factorio-updater)
+- SSH on by default (**READ WARNING**)
+
+### WARNING
+The default setup turns on SSH and includes an **INSECURE** public key, which you can find in the `keys` folder of this repository. **REPLACE IT IMMEDIATELY.**
+
+If you know how to use Docker, you should be able to Google how to do so.
